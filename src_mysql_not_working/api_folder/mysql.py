@@ -1,9 +1,15 @@
 
 import psycopg2
-from config_mysql import config
+import getpass
+# from config_mysql import config
 
 
-def creare_tables():
+password = getpass.getpass("Insert your mysql root password: ")
+conn = psycopg2.connect(
+    host="localhost", database="api_project", user="root", password=f"{password}")
+
+
+def create_tables(conn=conn):
     commands = (
         """
         CREATE TABLE IF NOT EXISTS api_project.channels (
@@ -37,12 +43,8 @@ def creare_tables():
                 ON UPDATE NO ACTION)
         """,
     )
-    conn = None
+
     try:
-        # read the connection parameters
-        params = config()
-        # connect to the PostgreSQL server
-        conn = psycopg2.connect(**params)
         cur = conn.cursor()
         # create table one by one
         for command in commands:
@@ -53,21 +55,17 @@ def creare_tables():
         conn.commit()
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
-    finally:
-        if conn is not None:
-            conn.close()
+    # finally:
+    #     if conn is not None:
+    #         conn.close()
 
 
-def insert_user(user_name):
+def insert_user(user_name, conn=conn):
     sql = """INSERT INTO api_project.users(user_name)
             VALUES(%s) RETURNING id_users;"""
-    conn = None
+    # conn = None
     id_users = None
     try:
-        # read database configuration
-        params = config()
-        # connect to the PostgreSQL database
-        conn = psycopg2.connect(**params)
         # create a new cursor
         cur = conn.cursor()
         # execute the INSERT statement
@@ -80,8 +78,8 @@ def insert_user(user_name):
         cur.close()
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
-    finally:
-        if conn is not None:
-            conn.close()
+    # finally:
+    #     if conn is not None:
+    #         conn.close()
 
     return id_users
