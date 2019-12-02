@@ -1,5 +1,6 @@
 from pymongo import MongoClient
 from requirements.constants import MONGO, USER, KEY
+from bson.json_util import loads, dumps
 
 
 class ConectColl:
@@ -46,3 +47,6 @@ class ConectColl:
             "user": user
         }
         return self.add_doc_users(document), id_user
+
+    def get_chats(self):
+        return dumps(self.chats.find({}, {'_id': 0, 'id_user': 0, 'id_chat': 0}))
