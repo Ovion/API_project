@@ -13,6 +13,9 @@ from sklearn.metrics.pairwise import cosine_similarity as distance
 
 
 def flatten_json(all_data):
+    '''
+    Just the flatten operation to get what I need
+    '''
     users_chats = {}
     for data in all_data:
         users_chats.setdefault(data['user'], []).append(data['text'])
@@ -23,6 +26,9 @@ def flatten_json(all_data):
 
 
 def friend_recomm(all_data):
+    '''
+    This function, recommend an user as a friend of another, based on the words they mention in their comments 
+    '''
     # all_data = all_data.json()
     users_chats = flatten_json(all_data)
 
@@ -43,6 +49,10 @@ def friend_recomm(all_data):
 
 
 def side_recomm(all_data):
+    '''
+    This function tell the user which side of the light they must join,
+    based on the positive/neutral/negative words they used in their comments
+    '''
     # all_data = all_data.json()
     users_chats = flatten_json(all_data)
 
@@ -66,14 +76,3 @@ def side_recomm(all_data):
         else:
             users_join_side[k] = 'Not defined'
     print(users_join_side)
-
-
-# url = 'http://localhost:8080/conversations'
-# all_data = requests.get(url)
-# all_data = all_data.json()
-
-# print('Friend recommendation: ')
-# friend_recomm(all_data)
-
-# print('Side recommendation: ')
-# side_recomm(all_data)
