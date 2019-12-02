@@ -45,7 +45,12 @@ def friend_recomm(all_data):
         similarity_matrix, columns=users_chats.keys(), index=users_chats.keys())
     np.fill_diagonal(sim_df.values, 0)
 
-    print(sim_df.idxmax())
+    final = sim_df.idxmax()
+    friend = {}
+    for i, e in final.items():
+        friend[i] = e
+    print(friend)
+    return list(friend)
 
 
 def side_recomm(all_data):
@@ -76,3 +81,4 @@ def side_recomm(all_data):
         else:
             users_join_side[k] = 'Not defined'
     print(users_join_side)
+    return list(users_join_side)

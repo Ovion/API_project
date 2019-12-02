@@ -21,9 +21,10 @@ def get_conv_sent():
     '''
     all_data = coll.get_chats_lst()
     print('Friend recommendation: ')
-    st.friend_recomm(all_data)
+    friend = st.friend_recomm(all_data)
     print('Side recommendation: ')
-    st.side_recomm(all_data)
+    side = st.side_recomm(all_data)
+    return friend, side
 
 
 @get('/users')
