@@ -1,10 +1,12 @@
 from bottle import route, run, get, post, request
 from Mongo import ConectColl
+import pandas as pd
 
 
 @get('/conversations')
 def get_convers():
-    return list(coll.chats.find({}, {"user": 1, "channel": 1, "text": 1}))
+    df = pd.DataFrame(coll.chats.find())
+    return df
 
 
 @post('/user/new')
