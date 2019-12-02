@@ -1,11 +1,20 @@
 from bottle import route, run, get, post, request
 from Mongo import ConectColl
+import sentiments as st
 
 
 @get('/conversations')
 def get_convers():
-    convers = coll.get_chats()
-    return convers
+    return coll.get_chats()
+
+
+@get('/conversations/sentimental')
+def get_conv_sent():
+    all_data = coll.get_chats()
+    print('Friend recommendation: ')
+    st.friend_recomm(all_data)
+    print('Side recommendation: ')
+    st.side_recomm(all_data)
 
 
 @post('/user/new')

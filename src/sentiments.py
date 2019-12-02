@@ -9,7 +9,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity as distance
 
 
-nltk.download('vader_lexicon')
+# nltk.download('vader_lexicon')
 
 
 def flatten_json(all_data):
@@ -66,12 +66,12 @@ def side_recomm(all_data):
     print(users_join_side)
 
 
-url = 'http://localhost:8080/conversations'
-all_data = requests.get(url)
-all_data = all_data.json()
+# url = 'http://localhost:8080/conversations'
+# all_data = requests.get(url)
+# all_data = all_data.json()
 
-print('Friend recommendation: ')
-friend_recomm(all_data)
+# print('Friend recommendation: ')
+# friend_recomm(all_data)
 
-print('Side recommendation: ')
-side_recomm(all_data)
+# print('Side recommendation: ')
+# side_recomm(all_data)
