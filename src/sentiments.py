@@ -23,6 +23,7 @@ def flatten_json(all_data):
 
 
 def friend_recomm(all_data):
+    # all_data = all_data.json()
     users_chats = flatten_json(all_data)
 
     count_vectorizer = CountVectorizer(stop_words='english')
@@ -42,6 +43,7 @@ def friend_recomm(all_data):
 
 
 def side_recomm(all_data):
+    # all_data = all_data.json()
     users_chats = flatten_json(all_data)
 
     sid = SentimentIntensityAnalyzer()
