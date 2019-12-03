@@ -50,7 +50,7 @@ def friend_recomm(all_data):
     for i, e in final.items():
         friend[i] = e
     print(friend)
-    return list(friend)
+    return friend
 
 
 def side_recomm(all_data):
@@ -81,4 +81,4 @@ def side_recomm(all_data):
         else:
             users_join_side[k] = 'Not defined'
     print(users_join_side)
-    return list(users_join_side)
+    return users_join_side

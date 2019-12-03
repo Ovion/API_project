@@ -11,8 +11,8 @@ def get_convers():
     return coll.get_chats()
 
 
-@get('/conversations/sentimental')
-def get_conv_sent():
+@get('/sentimental/friend')
+def get_friend():
     '''
     This get returns a sentimental analysis of the users in the chat.
     First sugguest your bestfriend, and then the side of the light, i.e.
@@ -22,9 +22,15 @@ def get_conv_sent():
     all_data = coll.get_chats_lst()
     print('Friend recommendation: ')
     friend = st.friend_recomm(all_data)
+    return friend
+
+
+@get('/sentimental/side')
+def get_side():
+    all_data = coll.get_chats_lst()
     print('Side recommendation: ')
     side = st.side_recomm(all_data)
-    return friend, side
+    return side
 
 
 @get('/users')
