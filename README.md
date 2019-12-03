@@ -6,6 +6,8 @@ I worked with bottle to create the API and MongoDB Atlas as DB
 ## How it works
 ---------------
 
+First of all you must keep runing the api.py file in the terminal.
+
 ### @post
 
 - /user/new \
